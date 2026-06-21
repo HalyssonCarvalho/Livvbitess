@@ -184,49 +184,173 @@
 
     /* ═══ TABLET ≤768px ═══ */
     @media(max-width:768px){
+      /* TOP BAR */
       .top-bar span:nth-child(n+3){display:none;}
+
+      /* NAVBAR — logo left, icons+hamburger right */
+      .navbar{
+        grid-template-columns:auto 1fr auto;
+        padding:10px 4%;
+      }
       .navbar nav{display:none;}
+      .logo-center{justify-content:flex-start;}
+      .nav-logo{height:44px;}
+      .nav-right{justify-content:flex-end;}
       .hamburger{display:flex;}
       .mobile-nav{display:block;}
-      .nav-logo{height:46px;}
-      .hero{min-height:52vw;}
+
+      /* HERO — full width, image smaller, checks in row */
+      .hero{
+        grid-template-columns:45% 55%;
+        min-height:auto;
+      }
+      .hero-right img{
+        object-position:35% center;
+        transform:scale(0.80);
+        transform-origin:center center;
+      }
+      .hero-checks-row{
+        flex-direction:row;
+        flex-wrap:wrap;
+        gap:8px;
+      }
+
+      /* PRODUCTS */
       .products{grid-template-columns:1fr;}
-      .pc{grid-template-columns:minmax(0,2fr) minmax(0,3fr);}
+      /* product card: image top, info below (stacked) */
+      .pc{
+        grid-template-columns:1fr;
+        padding:16px;
+        gap:16px;
+      }
+      /* flip card full width, natural ratio */
+      .flip-card{
+        aspect-ratio:3/4;
+        max-width:100%;
+      }
+      /* product info centered under image */
+      .pi{
+        text-align:center;
+      }
+      .pi h3{font-size:20px;}
+      .pf{display:inline-block;text-align:left;}
+      .qty-row{justify-content:center;}
+      .secure-note{justify-content:center;}
+
+      /* INGREDIENTS */
       .ing-row{grid-template-columns:repeat(3,1fr);}
       .ing:nth-child(3){border-right:none;}
       .ing:nth-child(4),.ing:nth-child(5){border-top:1px solid var(--border);}
       .ing:nth-child(5){border-right:none;}
-      .how-to{grid-template-columns:1fr;}
-      .ht-steps{border:none;grid-template-columns:repeat(3,1fr);padding:20px 4%;}
-      .ht-right{min-height:200px;}
-      .ht-left{padding:28px 5%;}
+
+      /* HOW TO — stack + photo moved below steps */
+      .how-to{
+        grid-template-columns:1fr;
+        display:flex;
+        flex-direction:column;
+      }
+      .ht-left{
+        padding:28px 5%;
+        order:0;
+      }
+      .ht-steps{
+        border:none;
+        grid-template-columns:repeat(3,1fr);
+        padding:20px 4%;
+        order:1;
+      }
+      /* Photo moves BELOW the steps box */
+      .ht-right{
+        order:2;
+        min-height:240px;
+        width:100%;
+        border-radius:0;
+      }
+
+      /* OUR STORY — stack, title centered */
       .story{grid-template-columns:1fr;}
       .story-img{min-height:260px;}
-      .story-content{padding:32px 5%;}
+      .story-content{
+        padding:32px 5%;
+        text-align:center;
+        align-items:center;
+      }
       .story-content::after{display:none;}
+      .st-ey{text-align:center;}
+      .story-content h2{text-align:center;}
+      .st-div{margin-left:auto;margin-right:auto;}
+      .story-content p{text-align:left;}
+      .story-content .btn-story{align-self:center;}
+
+      /* REVIEWS */
       .rev-static{grid-template-columns:1fr;}
-      footer{grid-template-columns:1fr 1fr;gap:20px;padding:32px 5% 14px;}
+
+      /* FOOTER — logo left, columns stacked */
+      footer{
+        grid-template-columns:1fr;
+        gap:20px;
+        padding:32px 5% 14px;
+      }
+      .fb{
+        flex-direction:row;
+        align-items:center;
+        gap:12px;
+      }
+      .foot-logo{
+        height:44px;
+        margin-bottom:0;
+      }
       .foot-bot{flex-direction:column;gap:6px;text-align:center;}
     }
 
     /* ═══ PHONE ≤480px ═══ */
     @media(max-width:480px){
       .top-bar{display:none;}
-      .navbar{padding:10px 4%;}
-      .nav-logo{height:40px;}
-      .hero{min-height:58vw;}
-      .pc{grid-template-columns:1fr;padding:14px;gap:10px;}
-      .flip-card{aspect-ratio:3/2;}
+
+      /* NAVBAR — logo left, hamburger+icons right */
+      .navbar{
+        grid-template-columns:auto 1fr auto;
+        padding:10px 4%;
+      }
+      .logo-center{justify-content:flex-start;}
+      .nav-logo{height:38px;}
+      .nav-right{justify-content:flex-end;}
+
+      /* HERO — keep side-by-side, image zoomed out */
+      .hero{min-height:56vw;}
+      .hero-right img{
+        transform:scale(0.75);
+        transform-origin:center center;
+      }
+
+      /* PRODUCT CARDS — single col stacked */
+      .pc{grid-template-columns:1fr;padding:14px;gap:12px;}
+      .flip-card{aspect-ratio:2/3;max-width:320px;margin:0 auto;}
+      .pi{text-align:center;}
+      .pf{display:inline-block;text-align:left;}
+      .qty-row{justify-content:center;}
+
+      /* INGREDIENTS — 2 col */
       .ing-row{grid-template-columns:1fr 1fr;}
       .ing:nth-child(3){border-right:1px solid var(--border);border-top:1px solid var(--border);}
       .ing:nth-child(4){border-top:1px solid var(--border);border-right:none;}
       .ing:nth-child(5){grid-column:1/-1;border-top:1px solid var(--border);border-right:none;}
+
+      /* HOW TO */
       .ht-steps{grid-template-columns:1fr;}
       .ht-left h2{font-size:20px;letter-spacing:2px;}
-      .story-content h2{font-size:24px;}
+      .ht-right{min-height:200px;order:2;}
+
+      /* STORY */
+      .story-content h2{font-size:22px;}
       .story-img{min-height:220px;}
+      .story-content{text-align:center;align-items:center;}
+      .st-div{margin-left:auto;margin-right:auto;}
+
+      /* FOOTER */
       footer{grid-template-columns:1fr;gap:16px;padding:24px 5% 12px;}
-      .foot-logo{height:48px;}
+      .fb{flex-direction:row;align-items:center;gap:12px;}
+      .foot-logo{height:40px;margin-bottom:0;}
     }
   
     /* ── WhatsApp social icon ── */
