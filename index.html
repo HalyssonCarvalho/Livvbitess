@@ -201,15 +201,39 @@
       .hamburger{display:flex;}
       .mobile-nav{display:block;}
 
-      /* HERO — full width, image smaller, checks in row */
+      /* HERO mobile — side-by-side like reference screenshot */
       .hero{
         grid-template-columns:45% 55%;
-        min-height:auto;
+        min-height:clamp(340px,70vw,480px);
+        align-items:stretch;
       }
-      .hero-right img{
-        object-position:35% center;
-        transform:scale(0.80);
-        transform-origin:center center;
+      /* hide the mobile no-bg image, show original full photo */
+      .hero-img-mobile{display:none !important;}
+      .hero-img-desktop{display:block !important;}
+      /* hero right: full bleed photo, no scale reduction */
+      .hero-right{
+        position:relative;
+        overflow:hidden;
+        display:block;
+      }
+      .hero-img-desktop{
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        object-position:40% center;
+        mix-blend-mode:multiply;
+        transform:none;
+      }
+      .hero-right::after{display:block;}
+      /* badge: repositioned for mobile */
+      .hero-badge{
+        left:calc(45% + 10px);
+        top:18%;
+        transform:none;
+        width:clamp(68px,14vw,90px);
+        height:clamp(68px,14vw,90px);
       }
       .hero-checks-row{
         flex-direction:row;
@@ -245,27 +269,39 @@
       .ing:nth-child(4),.ing:nth-child(5){border-top:1px solid var(--border);}
       .ing:nth-child(5){border-right:none;}
 
-      /* HOW TO — stack + center title + photo below steps */
+      /* HOW TO — stack + center everything + photo below steps */
       .how-to{
         grid-template-columns:1fr;
         display:flex;
         flex-direction:column;
+        border-bottom:1px solid var(--border);
       }
       .ht-left{
-        padding:28px 5%;
+        padding:36px 6%;
         order:0;
         text-align:center;
         align-items:center;
         display:flex;
         flex-direction:column;
+        width:100%;
       }
       .ht-left h2{
         text-align:center;
       }
       .ht-list{
         text-align:left;
-        align-self:flex-start;
-        width:100%;
+        align-self:center;
+        width:auto;
+        margin:0 auto;
+      }
+      .ht-list li{
+        justify-content:flex-start;
+      }
+      /* How to Bake button — full width centered */
+      .ht-left .btn-sm{
+        align-self:center;
+        min-width:220px;
+        text-align:center;
       }
       .ht-steps{
         border:none;
@@ -273,17 +309,24 @@
         padding:20px 4%;
         order:1;
       }
-      /* Photo moves BELOW the steps box */
+      /* Photo BELOW steps — clear separator from story section */
       .ht-right{
         order:2;
         min-height:260px;
+        max-height:320px;
         width:100%;
         border-radius:0;
-        display:block;
+        display:block !important;
+        border-top:1px solid var(--border);
+        margin-bottom:0;
       }
 
-      /* OUR STORY — stack, title centered */
-      .story{grid-template-columns:1fr;}
+      /* OUR STORY — stack, title centered, clear from how-to */
+      .story{
+        grid-template-columns:1fr;
+        margin-top:0;
+        border-top:none;
+      }
       .story-img{min-height:260px;}
       .story-content{
         padding:32px 5%;
@@ -405,41 +448,12 @@
     .ing-float:hover .inum{color:var(--gold);}
 
   
-    /* ══ MOBILE HERO IMAGE — no-bg PNG, smaller, with table shadow ══ */
+    /* ══ REVIEWS mobile — center ══ */
     @media(max-width:768px){
-      /* hide desktop blended photo */
-      .hero-img-desktop{display:none !important;}
-      /* show mobile no-bg image */
-      .hero-img-mobile{
-        display:block !important;
-        position:relative;
-        width:95%;
-        height:auto;
-        object-fit:contain;
-        object-position:center bottom;
-        margin:auto;
-        /* dramatic bottom shadow simulating table — more impactful */
-        filter:drop-shadow(0px 24px 28px rgba(160,120,80,0.55))
-               drop-shadow(0px 8px 12px rgba(100,70,40,0.30))
-               drop-shadow(0px 2px 4px rgba(80,50,20,0.20));
-      }
-      /* hero right becomes a flex container to center the mobile image */
-      .hero-right{
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        background:var(--cream);
-      }
-      /* remove the cream overlay gradient on mobile (not needed with no-bg) */
-      .hero-right::after{display:none;}
-
-      /* ── Reviews mobile — center everything ── */
       .rev-card{text-align:center;}
       .rev-stars{text-align:center;}
       .rev-text{text-align:center;}
       .rev-name{text-align:center;}
-
-      /* ── Product price/qty centered on desktop too (via .pi) ── */
     }
 
     /* ══ PRICE + QTY centered on ALL screens ══ */
