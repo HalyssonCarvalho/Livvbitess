@@ -245,7 +245,7 @@
       .ing:nth-child(4),.ing:nth-child(5){border-top:1px solid var(--border);}
       .ing:nth-child(5){border-right:none;}
 
-      /* HOW TO — stack + photo moved below steps */
+      /* HOW TO — stack + center title + photo below steps */
       .how-to{
         grid-template-columns:1fr;
         display:flex;
@@ -254,6 +254,18 @@
       .ht-left{
         padding:28px 5%;
         order:0;
+        text-align:center;
+        align-items:center;
+        display:flex;
+        flex-direction:column;
+      }
+      .ht-left h2{
+        text-align:center;
+      }
+      .ht-list{
+        text-align:left;
+        align-self:flex-start;
+        width:100%;
       }
       .ht-steps{
         border:none;
@@ -264,9 +276,10 @@
       /* Photo moves BELOW the steps box */
       .ht-right{
         order:2;
-        min-height:240px;
+        min-height:260px;
         width:100%;
         border-radius:0;
+        display:block;
       }
 
       /* OUR STORY — stack, title centered */
@@ -340,8 +353,8 @@
 
       /* HOW TO */
       .ht-steps{grid-template-columns:1fr;}
-      .ht-left h2{font-size:20px;letter-spacing:2px;}
-      .ht-right{min-height:200px;order:2;}
+      .ht-left h2{font-size:20px;letter-spacing:2px;text-align:center;}
+      .ht-right{min-height:220px;order:2;display:block !important;}
 
       /* STORY */
       .story-content h2{font-size:22px;}
@@ -400,14 +413,15 @@
       .hero-img-mobile{
         display:block !important;
         position:relative;
-        width:80%;
+        width:95%;
         height:auto;
         object-fit:contain;
         object-position:center bottom;
         margin:auto;
-        /* bottom shadow simulating table surface */
-        filter:drop-shadow(0px 18px 20px rgba(180,150,110,0.45))
-               drop-shadow(0px 6px 8px rgba(120,90,60,0.25));
+        /* dramatic bottom shadow simulating table — more impactful */
+        filter:drop-shadow(0px 24px 28px rgba(160,120,80,0.55))
+               drop-shadow(0px 8px 12px rgba(100,70,40,0.30))
+               drop-shadow(0px 2px 4px rgba(80,50,20,0.20));
       }
       /* hero right becomes a flex container to center the mobile image */
       .hero-right{
