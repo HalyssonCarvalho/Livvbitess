@@ -81,12 +81,12 @@
     /* FLIP CARD */
     .flip-card{width:100%;aspect-ratio:2/3;perspective:1000px;border-radius:12px;position:relative;}
     .flip-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform 0.7s cubic-bezier(.4,0,.2,1);border-radius:12px;}
-    .flip-card:hover .flip-inner,.flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+    @media(hover:hover){.flip-card:hover .flip-inner{transform:rotateY(180deg);}}.flip-card.flipped .flip-inner{transform:rotateY(180deg);}
     .flip-front,.flip-back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;overflow:hidden;background:#f5f0e8;}
     .flip-front img,.flip-back img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;}
     .flip-back{transform:rotateY(180deg);}
     .flip-hint{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);background:rgba(245,240,232,.9);padding:4px 10px;border-radius:20px;pointer-events:none;transition:opacity .3s;white-space:nowrap;z-index:3;}
-    .flip-card:hover .flip-hint,.flip-card.flipped .flip-hint{opacity:0;}
+    @media(hover:hover){.flip-card:hover .flip-hint{opacity:0;}}.flip-card.flipped .flip-hint{opacity:0;}
 
     
     .buy-overlay-btn svg{width:15px;height:15px;flex-shrink:0;}
@@ -753,13 +753,10 @@
     
     <div class="ht-steps ht-o4" id="ht-steps-airfryer">
       <h3 class="method-title">Air Fryer</h3>
-      <div class="sc"><div class="scircle">1</div><h4>Preheat Fryer</h4>
-        <svg class="sico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c0 0-5 5.5-5 10a5 5 0 0 0 10 0C17 7.5 12 2 12 2z"/><path d="M9 16c0 1.7 1.3 3 3 3s3-1.3 3-3"/></svg>
-        <p>Preheat to 350°F (177°C).</p></div>
-      <div class="sc"><div class="scircle">2</div><h4>Air Fry</h4>
+      <div class="sc"><div class="scircle">1</div><h4>Air Fry</h4>
         <svg class="sico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 7h8M9 11c1 1.5 5 1.5 6 0"/></svg>
         <p>Place frozen bites in the basket.</p></div>
-      <div class="sc"><div class="scircle">3</div><h4>Fry 20–25 min until golden.</h4>
+      <div class="sc"><div class="scircle">2</div><h4>Fry 20–25 min until golden.</h4>
         <svg class="sico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 10h.01"/><path d="M15 10h.01"/><path d="M9.5 15a3.5 3.5 0 0 0 5 0"/></svg>
         <p>Enjoy</p></div>
     </div>
@@ -867,19 +864,24 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCartBadge();
 });
 
-/* FLIP TOUCH & CLICK OUTSIDE / INTERACTION */
-document.addEventListener('click', (e) => {
-  if (!window.matchMedia('(hover:none)').matches) return;
-  const clickedCard = e.target.closest('.flip-card');
-  document.querySelectorAll('.flip-card').forEach(card => {
-    if (card !== clickedCard) {
-      card.classList.remove('flipped');
+/* FLIP — mobile/touch only */
+(function(){
+  var cards=document.querySelectorAll('.flip-card');
+  cards.forEach(function(card){
+    card.addEventListener('touchend',function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      var wasFlipped=card.classList.contains('flipped');
+      cards.forEach(function(c){c.classList.remove('flipped');});
+      if(!wasFlipped)card.classList.add('flipped');
+    },{passive:false});
+  });
+  document.addEventListener('touchend',function(e){
+    if(!e.target.closest('.flip-card')){
+      cards.forEach(function(c){c.classList.remove('flipped');});
     }
   });
-  if (clickedCard) {
-    clickedCard.classList.toggle('flipped');
-  }
-});
+})();
 
 /* STRIPE CHECKOUT
    ─────────────────────────────────────────────────────────────────
