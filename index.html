@@ -484,48 +484,6 @@
       .rev-name{text-align:center;}
     }
 
-    /* ══ PRICE + QTY centered on ALL screens ══ */
-    .product-price{text-align:center;}
-    .qty-row{justify-content:center;}
-
-  
-    /* ══ CART BOUNCE — draws attention on mobile ══ */
-    @keyframes cartBounce{
-      0%,100%{transform:translateY(0) rotate(0deg);}
-      20%{transform:translateY(-5px) rotate(-4deg);}
-      40%{transform:translateY(-3px) rotate(3deg);}
-      60%{transform:translateY(-5px) rotate(-2deg);}
-      80%{transform:translateY(-2px) rotate(2deg);}
-    }
-    @media(max-width:768px){
-      .nav-icons span:last-child{
-        display:inline-block;
-        cursor:pointer;
-      }
-    }
-    .nav-icons span[title="Cart"]:hover {
-      animation: cartBounce 1s ease-in-out;
-    }
-    .cart-badge {
-      position: absolute;
-      top: -6px;
-      right: -8px;
-      background: var(--green);
-      color: #fff;
-      font-size: 9px;
-      font-weight: 600;
-      border-radius: 50%;
-      width: 14px;
-      height: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: "Montserrat", sans-serif;
-      border: 1px solid var(--cream);
-      line-height: 1;
-      pointer-events: none;
-    }
-
   
     /* ══ HOW TO BAKE spacing fix on mobile ══ */
     @media(max-width:768px){
@@ -573,7 +531,6 @@
   <div class="nav-right">
     <div class="nav-icons">
       <span title="Account"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg></span>
-      <span title="Cart" style="position: relative; display: inline-block;"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M1 3h1.5l1.5 9h11l1.5-6H5.5"/></svg><div id="cart-badge" class="cart-badge">0</div></span>
     </div>
     <button class="hamburger" id="hambBtn" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -637,24 +594,6 @@
         <h3>Traditional<br>Brazilian Cheese Bread</h3>
         <p class="pd">Our classic recipe — perfectly chewy inside, crispy outside. 12 pieces per bag.</p>
         <ul class="pf"><li>Gluten-Free</li><li>Made with Real Cheese</li><li>No Artificial Preservatives</li></ul>
-        <p class="product-price">$18.99 <span>/ 13 oz · 12 pcs</span></p>
-        <div class="qty-row">
-          <span class="qty-label">Qty</span>
-          <div class="qty-ctrl">
-            <button onclick="changeQty('qty1',-1)">−</button>
-            <input id="qty1" type="number" value="0" min="0" max="20" readonly/>
-            <button onclick="changeQty('qty1',1)">+</button>
-          </div>
-        </div>
-        <button class="stripe-btn" id="btn1" onclick="checkout('traditional')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-          <span class="label">Buy Now</span>
-          <span class="loading">Processing…</span>
-        </button>
-        <p class="secure-note">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-          Secure checkout · No account needed
-        </p>
       </div>
     </div>
 
@@ -673,24 +612,6 @@
         <h3>Organic Bone Broth</h3>
         <p class="pd">Made with organic bone broth for extra flavor and nutrition</p>
         <ul class="pf"><li>Gluten-Free</li><li>Made with Real Cheese</li><li>Organic Bone Broth</li></ul>
-        <p class="product-price">$20.99 <span>/ 13 oz · 12 pcs</span></p>
-        <div class="qty-row">
-          <span class="qty-label">Qty</span>
-          <div class="qty-ctrl">
-            <button onclick="changeQty('qty2',-1)">−</button>
-            <input id="qty2" type="number" value="0" min="0" max="20" readonly/>
-            <button onclick="changeQty('qty2',1)">+</button>
-          </div>
-        </div>
-        <button class="stripe-btn" id="btn2" onclick="checkout('bonebroth')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-          <span class="label">Buy Now</span>
-          <span class="loading">Processing…</span>
-        </button>
-        <p class="secure-note">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-          Secure checkout · No account needed
-        </p>
       </div>
     </div>
 
@@ -844,27 +765,6 @@ navClose.addEventListener('click',closeNav);
 navOverlay.addEventListener('click',closeNav);
 mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeNav));
 
-/* QTY */
-function updateCartBadge(){
-  const qty1 = parseInt(document.getElementById('qty1').value) || 0;
-  const qty2 = parseInt(document.getElementById('qty2').value) || 0;
-  const total = qty1 + qty2;
-  const badge = document.getElementById('cart-badge');
-  if(badge){
-    badge.innerText = total;
-  }
-}
-
-function changeQty(id,delta){
-  const input=document.getElementById(id);
-  input.value=Math.max(0,Math.min(20,parseInt(input.value)+delta));
-  updateCartBadge();
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  updateCartBadge();
-});
-
 /* FLIP — mobile/touch only */
 (function(){
   var cards=document.querySelectorAll('.flip-card');
@@ -884,36 +784,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 })();
 
-/* STRIPE CHECKOUT
-   ─────────────────────────────────────────────────────────────────
-   STEP 1: Go to dashboard.stripe.com → Payment Links → Create
-   STEP 2: Replace the two URLs below with your real Payment Links
-   ─────────────────────────────────────────────────────────────────*/
-const PAYMENT_LINKS = {
-  traditional: 'https://buy.stripe.com/8x2fZh6H5ehodF5eVG5kk02',
-  bonebroth:   'https://buy.stripe.com/aFa4gzc1p8X4asTeVG5kk01',
-};
-
-function checkout(product){
-  const btnId = product==='traditional' ? 'btn1' : 'btn2';
-  const qtyId = product==='traditional' ? 'qty1' : 'qty2';
-  const btn   = document.getElementById(btnId);
-  let qty     = parseInt(document.getElementById(qtyId).value)||0;
-  const link  = PAYMENT_LINKS[product];
-
-  if(qty <= 0){
-    qty = 1;
-    document.getElementById(qtyId).value = 1;
-    updateCartBadge();
-  }
-  if(!link||link.includes('YOUR_')){
-    alert('⚠️ Configure your Stripe Payment Links in the HTML file.');
-    return;
-  }
-  btn.classList.add('loading-state');
-  btn.disabled=true;
-  window.location.href = link + '?prefilled_quantity=' + qty;
-}
 </script>
 </body>
 </html>
